@@ -1,0 +1,846 @@
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HBR Flex - Comércio de Pneumáticos e Ferramentas</title>
+    <!-- Google Fonts & FontAwesome -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary: #0f2b48;
+            --primary-light: #1e40af;
+            --accent: #d97706;
+            --accent-hover: #b45309;
+            --bg-light: #f8fafc;
+            --card-bg: #ffffff;
+            --text-dark: #0f172a;
+            --text-muted: #475569;
+            --border: #e2e8f0;
+            --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
+            --shadow-lg: 0 20px 30px -10px rgba(15, 43, 72, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Top Bar */
+        .top-bar {
+            background-color: var(--primary);
+            color: #94a3b8;
+            padding: 8px 5%;
+            font-size: 0.85rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .top-bar-info {
+            display: flex;
+            gap: 20px;
+        }
+
+        .top-bar-info item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .top-bar a {
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .top-bar a:hover {
+            color: #fff;
+        }
+
+        /* Header / Navigation */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--primary);
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+
+        .logo span {
+            color: var(--accent);
+        }
+
+        .logo-badge {
+            background: #e0f2fe;
+            color: #0369a1;
+            font-size: 0.7rem;
+            padding: 2px 8px;
+            border-radius: 20px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        nav {
+            display: flex;
+            gap: 25px;
+            align-items: center;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--accent);
+            color: #fff;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(217, 119, 6, 0.3);
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: var(--accent-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(217, 119, 6, 0.4);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            box-shadow: none;
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: #fff;
+            box-shadow: var(--shadow);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #0f2b48 0%, #1a3a5c 100%);
+            color: #fff;
+            padding: 80px 5% 100px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(217,119,6,0.15) 0%, rgba(0,0,0,0) 70%);
+            border-radius: 50%;
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            line-height: 1.15;
+            margin-bottom: 20px;
+        }
+
+        .hero-text h1 span {
+            color: #fbbf24;
+        }
+
+        .hero-text p {
+            font-size: 1.15rem;
+            color: #cbd5e1;
+            margin-bottom: 30px;
+            max-width: 600px;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .hero-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+
+        .hero-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            color: #fbbf24;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .quick-info-list {
+            list-style: none;
+        }
+
+        .quick-info-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+        }
+
+        .quick-info-list li:last-child {
+            border-bottom: none;
+        }
+
+        .quick-info-list span.label {
+            color: #94a3b8;
+        }
+
+        .quick-info-list span.val {
+            font-weight: 600;
+            color: #fff;
+            text-align: right;
+        }
+
+        /* Section Global */
+        section {
+            padding: 80px 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-header h2 {
+            font-size: 2.2rem;
+            color: var(--primary);
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+
+        .section-header p {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+        }
+
+        /* Services Section */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 35px 25px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+            position: relative;
+            top: 0;
+        }
+
+        .service-card:hover {
+            top: -8px;
+            box-shadow: var(--shadow-lg);
+            border-color: rgba(15, 43, 72, 0.2);
+        }
+
+        .service-icon {
+            width: 65px;
+            height: 65px;
+            background: #eff6ff;
+            color: var(--primary);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+
+        .service-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 12px;
+            color: var(--primary);
+        }
+
+        .service-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+        }
+
+        /* Data Section / CNPJ Info */
+        .data-section {
+            background: #fff;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+        }
+
+        .data-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 25px;
+        }
+
+        .data-item {
+            background: var(--bg-light);
+            padding: 20px;
+            border-radius: 12px;
+            border-left: 4px solid var(--primary);
+        }
+
+        .data-item .title {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--text-muted);
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .data-item .value {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--primary);
+            word-break: break-word;
+        }
+
+        .badge-status {
+            display: inline-block;
+            background: #dcfce7;
+            color: #15803d;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+        }
+
+        /* Redirect Banner */
+        .redirect-banner {
+            background: linear-gradient(135deg, var(--primary) 0%, #1e3a8a 100%);
+            border-radius: 24px;
+            padding: 50px 40px;
+            color: #fff;
+            text-align: center;
+            margin: 40px auto;
+            max-width: 1200px;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .redirect-banner h2 {
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+            font-weight: 800;
+        }
+
+        .redirect-banner p {
+            font-size: 1.1rem;
+            color: #cbd5e1;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+
+        /* Contact Section */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .contact-card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .contact-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .contact-icon {
+            width: 45px;
+            height: 45px;
+            background: #fef3c7;
+            color: var(--accent);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .contact-info h4 {
+            font-size: 1.05rem;
+            color: var(--primary);
+            margin-bottom: 4px;
+        }
+
+        .contact-info p, .contact-info a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.95rem;
+        }
+
+        .contact-info a:hover {
+            color: var(--accent);
+        }
+
+        /* Footer */
+        footer {
+            background: #091e36;
+            color: #94a3b8;
+            padding: 50px 5% 30px;
+            font-size: 0.9rem;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-brand h3 {
+            color: #fff;
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+        }
+
+        .footer-links h4 {
+            color: #fff;
+            margin-bottom: 15px;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 8px;
+        }
+
+        .footer-links a {
+            color: #94a3b8;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #fff;
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-top: 25px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            text-align: center;
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .hero-container {
+                grid-template-columns: 1fr;
+            }
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+            .footer-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 15px;
+            }
+            nav {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .hero-text h1 {
+                font-size: 2.2rem;
+            }
+            .top-bar {
+                flex-direction: column;
+                gap: 5px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Info Bar -->
+    <div class="top-bar">
+        <div class="top-bar-info">
+            <span><i class="fa-solid fa-phone"></i> (85) 4042-3650</span>
+            <span><i class="fa-solid fa-envelope"></i> fiscal@hbrflex.com.br</span>
+        </div>
+        <div>
+            <span><i class="fa-solid fa-location-dot"></i> Fortaleza - CE</span>
+        </div>
+    </div>
+
+    <!-- Main Header -->
+    <header>
+        <a href="https://www.hbrflex.com.br/" class="logo">
+            HBR <span>FLEX</span>
+            <span class="logo-badge">Filial CE</span>
+        </a>
+        <nav>
+            <a href="#servicos">Principais Serviços</a>
+            <a href="#empresa">Dados de Registro</a>
+            <a href="#contato">Contato & Endereço</a>
+            <a href="https://www.hbrflex.com.br/" target="_blank" class="btn">
+                Acessar Portal Oficial <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            </a>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" style="max-width: 100%;">
+        <div class="hero-container">
+            <div class="hero-text">
+                <h1>Soluções Completas em <span>Pneumáticos</span> & Ferramentas</h1>
+                <p>Referência no fornecimento de equipamentos industriais, ferramentas de alta performance e mangueiras hidráulicas para Fortaleza e toda a região.</p>
+                <div class="hero-cta">
+                    <a href="https://www.hbrflex.com.br/" target="_blank" class="btn">
+                        <i class="fa-solid fa-store"></i> Visitar Site Oficial
+                    </a>
+                    <a href="#servicos" class="btn btn-outline" style="border-color: #fff; color: #fff;">
+                        Nossos Serviços
+                    </a>
+                </div>
+            </div>
+
+            <!-- Quick Info Card -->
+            <div class="hero-card">
+                <h3><i class="fa-solid fa-shield-halved"></i> Registro Empresarial</h3>
+                <ul class="quick-info-list">
+                    <li>
+                        <span class="label">CNPJ:</span>
+                        <span class="val">29.816.344/0003-17</span>
+                    </li>
+                    <li>
+                        <span class="label">Razão Social:</span>
+                        <span class="val">Hbr Comercio de Pneumaticos e Ferramentas LTDA</span>
+                    </li>
+                    <li>
+                        <span class="label">Nome Fantasia:</span>
+                        <span class="val">Hbr Flex</span>
+                    </li>
+                    <li>
+                        <span class="label">Situação Cadastral:</span>
+                        <span class="val"><span class="badge-status">ATIVA</span></span>
+                    </li>
+                    <li>
+                        <span class="label">Município:</span>
+                        <span class="val">Fortaleza / CE</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Principais Serviços Section -->
+    <section id="servicos">
+        <div class="section-header">
+            <h2>Principais Serviços & Produtos</h2>
+            <p>Conheça nossas soluções especializadas para a indústria, oficina e construção</p>
+        </div>
+
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fa-solid fa-gears"></i>
+                </div>
+                <h3>Sistemas Pneumáticos</h3>
+                <p>Fornecimento completo de conexões, válvulas, cilindros e componentes pneumáticos de alta precisão para linhas industriais.</p>
+                <a href="https://www.hbrflex.com.br/" target="_blank" style="color: var(--accent); font-weight: 700; text-decoration: none;">Ver Catálogo <i class="fa-solid fa-chevron-right"></i></a>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fa-solid fa-screwdriver-wrench"></i>
+                </div>
+                <h3>Ferramentas Profissionais</h3>
+                <p>Ampla linha de ferramentas manuais, elétricas e pneumáticas para indústrias, automotivo e manutenção avançada.</p>
+                <a href="https://www.hbrflex.com.br/" target="_blank" style="color: var(--accent); font-weight: 700; text-decoration: none;">Ver Catálogo <i class="fa-solid fa-chevron-right"></i></a>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fa-solid fa-hose"></i>
+                </div>
+                <h3>Mangueiras & Mangotes</h3>
+                <p>Soluções em mangueiras industriais e hidráulicas de alta e baixa pressão, resistentes e sob medida para sua aplicação.</p>
+                <a href="https://www.hbrflex.com.br/" target="_blank" style="color: var(--accent); font-weight: 700; text-decoration: none;">Ver Catálogo <i class="fa-solid fa-chevron-right"></i></a>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fa-solid fa-headset"></i>
+                </div>
+                <h3>Suporte & Consultoria Técnica</h3>
+                <p>Atendimento especializado para especificação de produtos e projetos customizados no setor industrial.</p>
+                <a href="https://www.hbrflex.com.br/" target="_blank" style="color: var(--accent); font-weight: 700; text-decoration: none;">Falar com Especialista <i class="fa-solid fa-chevron-right"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action Banner -->
+    <div class="redirect-banner">
+        <h2>Conheça Todo o Nosso Catálogo Online</h2>
+        <p>Acesse o site oficial da HBR Flex para realizar orçamentos, verificar produtos em estoque e ter acesso ao atendimento nacional.</p>
+        <a href="https://www.hbrflex.com.br/" target="_blank" class="btn" style="background: #fff; color: var(--primary);">
+            Ir Para www.hbrflex.com.br <i class="fa-solid fa-external-link"></i>
+        </a>
+    </div>
+
+    <!-- Informações Empresariais Completas (CNPJ) -->
+    <section id="empresa">
+        <div class="section-header">
+            <h2>Informações de Registro da Unidade</h2>
+            <p>Dados cadastrais oficiais da filial Fortaleza - CE</p>
+        </div>
+
+        <div class="data-section">
+            <div class="data-grid">
+                <div class="data-item">
+                    <div class="title">CNPJ</div>
+                    <div class="value">29.816.344/0003-17</div>
+                </div>
+
+                <div class="data-item">
+                    <div class="title">Razão Social</div>
+                    <div class="value">Hbr Comercio de Pneumaticos e Ferramentas LTDA</div>
+                </div>
+
+                <div class="data-item">
+                    <div class="title">Nome Fantasia</div>
+                    <div class="value">Hbr Flex</div>
+                </div>
+
+                <div class="data-item">
+                    <div class="title">Data de Abertura</div>
+                    <div class="value">19/10/2020</div>
+                </div>
+
+                <div class="data-item">
+                    <div class="title">Tipo / Porte</div>
+                    <div class="value">Filial / Micro Empresa</div>
+                </div>
+
+                <div class="data-item">
+                    <div class="title">Natureza Jurídica</div>
+                    <div class="value">Sociedade Empresária Limitada</div>
+                </div>
+
+                <div class="data-item">
+                    <div class="title">Capital Social</div>
+                    <div class="value">R$ 100.000,00</div>
+                </div>
+
+                <div class="data-item">
+                    <div class="title">Opção Simples / MEI</div>
+                    <div class="value">Não / Não</div>
+                </div>
+
+                <div class="data-item">
+                    <div class="title">Situação Cadastral</div>
+                    <div class="value"><span class="badge-status">Ativa (19/10/2020)</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contato e Localização -->
+    <section id="contato">
+        <div class="section-header">
+            <h2>Contato & Localização</h2>
+            <p>Fale diretamente com nossa unidade em Fortaleza ou visite nosso endereço</p>
+        </div>
+
+        <div class="contact-grid">
+            <div class="contact-card">
+                <h3 style="margin-bottom: 25px; color: var(--primary); font-size: 1.3rem;">Canais de Atendimento</h3>
+                
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fa-solid fa-phone"></i>
+                    </div>
+                    <div class="contact-info">
+                        <h4>Telefone Comercial</h4>
+                        <p><a href="tel:8540423650">(85) 4042-3650</a></p>
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fa-solid fa-envelope"></i>
+                    </div>
+                    <div class="contact-info">
+                        <h4>E-mail Fiscal / Contato</h4>
+                        <p><a href="mailto:fiscal@hbrflex.com.br">fiscal@hbrflex.com.br</a></p>
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fa-solid fa-globe"></i>
+                    </div>
+                    <div class="contact-info">
+                        <h4>Portal Nacional</h4>
+                        <p><a href="https://www.hbrflex.com.br/" target="_blank">www.hbrflex.com.br</a></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="contact-card">
+                <h3 style="margin-bottom: 25px; color: var(--primary); font-size: 1.3rem;">Endereço para Correspondência</h3>
+                
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fa-solid fa-map-location-dot"></i>
+                    </div>
+                    <div class="contact-info">
+                        <h4>Logradouro</h4>
+                        <p>Avenida Doutor Silas Munguba, 435</p>
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fa-solid fa-building"></i>
+                    </div>
+                    <div class="contact-info">
+                        <h4>Bairro</h4>
+                        <p>Parangaba</p>
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fa-solid fa-city"></i>
+                    </div>
+                    <div class="contact-info">
+                        <h4>Cidade / UF / CEP</h4>
+                        <p>Fortaleza - CE | CEP: 60740-005</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-brand">
+                <h3>HBR FLEX</h3>
+                <p>Hbr Comercio de Pneumaticos e Ferramentas LTDA<br>CNPJ: 29.816.344/0003-17</p>
+            </div>
+            <div class="footer-links">
+                <h4>Navegação</h4>
+                <ul>
+                    <li><a href="#servicos">Serviços</a></li>
+                    <li><a href="#empresa">Dados Cadastrais</a></li>
+                    <li><a href="#contato">Contato</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Links Úteis</h4>
+                <ul>
+                    <li><a href="https://www.hbrflex.com.br/" target="_blank">Site Oficial HBR Flex</a></li>
+                    <li><a href="mailto:fiscal@hbrflex.com.br">Enviar E-mail</a></li>
+                    <li><a href="tel:8540423650">Ligar Agora</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy;.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
